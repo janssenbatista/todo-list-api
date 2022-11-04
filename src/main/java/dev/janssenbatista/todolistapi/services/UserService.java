@@ -15,19 +15,19 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    User saveUser(User user) {
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 
-    Optional<User> findUserById(UUID userId) {
+    public Optional<User> findUserById(UUID userId) {
         return userRepository.findById(userId);
     }
 
-    List<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    void deleteUser(UUID userId) {
+    public void deleteUser(UUID userId) {
         userRepository.findById(userId).ifPresentOrElse(userRepository::delete, () -> {
             throw new RuntimeException("User not found");
         });
