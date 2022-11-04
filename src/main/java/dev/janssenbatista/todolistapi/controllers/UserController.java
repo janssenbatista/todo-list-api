@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> createUser(@RequestBody @Valid UserDto userDto) {
+    public ResponseEntity<Object> createUser(@Valid @RequestBody UserDto userDto) {
         User user = new User();
         BeanUtils.copyProperties(userDto, user);
         user.setId(UUID.randomUUID());
@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<Object> updateUserById(@PathVariable UUID userId, @RequestBody UserDto userDto) {
+    public ResponseEntity<Object> updateUserById(@PathVariable UUID userId, @Valid @RequestBody UserDto userDto) {
         Optional<User> optionalUser = userService.findUserById(userId);
         if (optionalUser.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
