@@ -1,6 +1,7 @@
 package dev.janssenbatista.todolistapi.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -18,4 +19,6 @@ public class User {
     private String username;
     private String password;
     private String email;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 }
