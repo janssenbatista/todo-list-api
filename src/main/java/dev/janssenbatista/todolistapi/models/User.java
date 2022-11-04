@@ -1,2 +1,21 @@
-package dev.janssenbatista.todolistapi.models;public class User {
+package dev.janssenbatista.todolistapi.models;
+
+import javax.persistence.*;
+import java.util.UUID;
+
+@Entity
+@Table(name = "tb_user")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    @Column(name = "first_name",length = 50, nullable = false)
+    private String firstName;
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+    @Column(length = 70, nullable = false)
+    private String username;
+    private String password;
+    private String email;
 }
