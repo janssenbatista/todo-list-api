@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<Object> getUserById(@PathVariable UUID userId) {
+    public ResponseEntity<Object> getUserById(@PathVariable Long userId) {
         Optional<User> optionalUser = userService.findUserById(userId);
         if (optionalUser.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
@@ -41,14 +41,13 @@ public class UserController {
     public ResponseEntity<Object> createUser(@Valid @RequestBody UserDto userDto) {
         User user = new User();
         BeanUtils.copyProperties(userDto, user);
-        user.setId(UUID.randomUUID());
         user.setPassword(BCrypt.withDefaults().hashToString(12, userDto.getPassword().toCharArray()));
         user.setCreatedAt(LocalDateTime.now(ZoneId.of("UTC")));
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(user));
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<Object> updateUserById(@PathVariable UUID userId, @Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<Object> updateUserById(@PathVariable Long userId, @Valid @RequestBody UserDto userDto) {
         Optional<User> optionalUser = userService.findUserById(userId);
         if (optionalUser.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
@@ -60,7 +59,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Object> deleteUserById(@PathVariable UUID userId) {
+    public ResponseEntity<Object> deleteUserById(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity.ok().build();
     }
