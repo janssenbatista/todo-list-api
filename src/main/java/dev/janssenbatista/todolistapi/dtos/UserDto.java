@@ -1,21 +1,24 @@
 package dev.janssenbatista.todolistapi.dtos;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class UserDto {
 
     @NotBlank
-    @Max(value = 50)
+    @Size(max = 50)
     private String firstName;
     @NotBlank
     private String lastName;
     @NotBlank
-    @Max(value = 70)
+    @Size(max = 70)
+    @EqualsAndHashCode.Include
     private String username;
     @NotBlank
     private String password;
