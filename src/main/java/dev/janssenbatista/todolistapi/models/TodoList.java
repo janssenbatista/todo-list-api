@@ -1,10 +1,10 @@
 package dev.janssenbatista.todolistapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "todo_list")
@@ -18,7 +18,7 @@ public class TodoList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @EqualsAndHashCode.Include
-    private UUID id;
+    private Long id;
     @Column(nullable = false, length = 70, unique = true)
     private String description;
     @Column(name = "created_at", nullable = false)
@@ -27,5 +27,6 @@ public class TodoList {
     private LocalDateTime updatedAt;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 }
