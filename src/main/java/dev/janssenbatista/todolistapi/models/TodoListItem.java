@@ -21,6 +21,8 @@ public class TodoListItem {
     private Long id;
     @Column(nullable = false)
     private String description;
+    @Column(name = "is_done")
+    private boolean isDone;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
