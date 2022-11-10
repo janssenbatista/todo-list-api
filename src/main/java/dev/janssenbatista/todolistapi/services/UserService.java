@@ -34,4 +34,8 @@ public class UserService {
             throw new RuntimeException("User not found");
         });
     }
+
+    public boolean existsById(Long userId) {
+        return userRepository.existsById(userId);
+    }
 }
