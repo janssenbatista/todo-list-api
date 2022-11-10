@@ -32,4 +32,8 @@ public class TodoListService {
     public void deleteTodoListById(Long todoListId) {
         todoListRepository.deleteById(todoListId);
     }
+
+    public boolean existsById(Long todoListId) {
+        return todoListRepository.existsById(todoListId);
+    }
 }
