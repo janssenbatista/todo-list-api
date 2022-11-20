@@ -14,10 +14,8 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/users")
 public class UserController {
 
@@ -65,3 +63,5 @@ public class UserController {
     }
 
 }
+
+
